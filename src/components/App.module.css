@@ -1,0 +1,8 @@
+.feedback {
+  margin-left: 50px;
+  background-color: lightgray;
+  max-width: 300px;
+  padding: 50px;
+  border-radius: 20%;
+  box-shadow: 1px 1px 1px black;
+}
