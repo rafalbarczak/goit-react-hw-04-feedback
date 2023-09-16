@@ -6,32 +6,22 @@ import css from './App.module.css';
 import { useState } from 'react';
 
 export const App = () => {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
+  const [stats, setStats] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
 
   const buttonHandler = type => {
-    switch (type) {
-      case 'good':
-        setGood(good + 1);
-        break;
-      case 'neutral':
-        setNeutral(neutral + 1);
-        break;
-      case 'bad':
-        setBad(bad + 1);
-        break;
-      default:
-        break;
-    }
+    setStats({ ...stats, [type]: stats[type] + 1 });
   };
 
   const countTotalFeedback = () => {
-    return good + neutral + bad;
+    return stats.good + stats.neutral + stats.bad;
   };
 
   const countPositiveFeedbackPercentage = () => {
-    return Math.round((good / countTotalFeedback()) * 100);
+    return Math.round((stats.good / countTotalFeedback()) * 100);
   };
 
   const total = countTotalFeedback();
@@ -48,9 +38,9 @@ export const App = () => {
       {total > 0 ? (
         <Section title={'Statistics'}>
           <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
+            good={stats.good}
+            neutral={stats.neutral}
+            bad={stats.bad}
             total={total}
             positiveFeedback={positiveFeedback}
           />
